@@ -1,0 +1,34 @@
+GRAPHQL http://localhost:8080/graphql
+
+query {
+    books {
+        id
+        title
+        pageCount
+    }
+}
+
+query {
+   book(id: 3) {
+       author
+       title
+   }
+}
+
+mutation {
+    addBook(title: "Choke", author: "Brad Thor", pageCount: 740) {
+        id
+        title
+        author
+        pageCount
+    }
+
+    updateBook(id: 4, title: "on Point ", author: "Brad Thor", pageCount: 740) {
+        id
+        title
+        author
+        pageCount
+    }
+
+    deleteBook(id: 2)
+}
