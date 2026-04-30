@@ -2,7 +2,10 @@ GRAPHQL
 
 Q1. What is GraphQL, and how is it different from REST?
 Answer:
-GraphQL is the type of communication where the client can send the request it needs to the server.  It uses a single endpoint where clients define the structure of the response. GraphQL is different from REST as it sends more customized endpoint instead of over fetching or under fetching done with REST. With that it does not waste resources as the result endpoint is customized to the client needs.
+GraphQL is the type of communication where the client can send the request it needs to the server.  
+It uses a single endpoint where clients define the structure of the response. 
+GraphQL is different from REST as it sends more customized endpoint instead of over fetching or under fetching done with REST. 
+With that it does not waste resources as the result endpoint is customized to the client needs.
 
 Q2. What are the 3 main operation types in GraphQL?
 Answer:
@@ -12,7 +15,8 @@ Answer:
 
 Q3. What is a resolver?
 Answer:
-A resolver is a function that fetches the data for a field in a GraphQL query. It connects the schema to the data source (DB, API, etc.).
+A resolver is a function that fetches the data for a field in a GraphQL query. 
+It connects the schema to the data source (DB, API, etc.).
 
 Q4. What problem does GraphQL solve that REST struggles with?
 Answer:
