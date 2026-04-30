@@ -1,0 +1,111 @@
+GRAPHQL
+
+Q1. What is GraphQL, and how is it different from REST?
+Answer:
+GraphQL is the type of communication where the client can send the request it needs to the server.  It uses a single endpoint where clients define the structure of the response. GraphQL is different from REST as it sends more customized endpoint instead of over fetching or under fetching done with REST. With that it does not waste resources as the result endpoint is customized to the client needs.
+
+Q2. What are the 3 main operation types in GraphQL?
+Answer:
+-	 Query
+-	Mutation 
+-	 Subscription
+
+Q3. What is a resolver?
+Answer:
+A resolver is a function that fetches the data for a field in a GraphQL query. It connects the schema to the data source (DB, API, etc.).
+
+Q4. What problem does GraphQL solve that REST struggles with?
+Answer:
+-	Over fetching
+-	Under fetching
+-	Multiple API calls in Rest (GraphQl reduces round trips)
+
+Q5.	Given this schema:
+        type Book {
+         	 id: ID!
+          	title: String!
+          	pageCount: Int
+         	 author: Author
+        }
+        type Author {
+          	id: ID!
+          	name: String!
+        }
+        type Query {
+           	books: [Book]
+          	bookById(id: ID!): Book
+        }
+
+        Write a query to get:
+        •	all books 
+        •	only title and pageCount
+
+    Answer:
+      // list of books
+      i.  @QueryMapping
+          public List<Book> getAllBooks() { 
+               return bookRepository.findAll(); 
+          }
+
+      //only title and pageCount  
+      ii.  @QueryMapping
+           public Book get(@Argument String! title, @Argument  Integer  pageCount) {
+         	      List<Book> book = bookRepository.findAll(); 
+               	for (Book books: book) {
+                		if(books.getTitle(). equals(title) && books.getPageCount() == pageCount) {
+                          		 return books;
+                  	}
+                }
+            }
+
+Q6. Write a query to fetch:
+    •	a book by ID 
+    •	include Author Name
+
+    Answer:
+     i.     @QueryMapping
+	          public Book getBookById(@Argument Long id)
+               	   return bookRepository.findById(id)
+                        .orElseThrow(() -> new RuntimeException("Book Not Found")); 
+            }
+
+    ii.	    @MutationMapping
+            public Book addAuthor(@Argument Long id, @Argument Author author)
+                    Book book = bookRepository.findById(id)
+                           . orElseThrow(() -> new RuntimeException("Book Not Found"));         
+                    book.setAuthor(author);
+               return bookRepository.save(book);
+            }
+
+Q7.  Write a mutation to add a book titled:
+      "GraphQL Mastery" with 320 pages
+
+    Answer:     
+    @Mutation 
+    public Book addBook(@Argument String! title,  @Argument Integer pageCount) {
+             Book book = new Book();
+             book.setTitle(title);
+             book.setPageCount(pageCount);
+   	    return bookRepository.save(book);
+    }
+
+Q8.  What is the difference between Query and Mutation.
+
+    Answer:
+    Query is used to return the value of the resource. It's read operation and It's like a GET method in REST
+    - for example -- to return all Books - we use type Query {books {id, author, title}}
+    while Mutation is to create, update or delete a resource. 
+    It's like PUT, POST, PATCH and DELETE operations in REST eg
+
+      type Mutation {
+          addBook(title: String!, pageCount: Int): Book
+      }
+
+
+
+   
+
+
+
+
+
